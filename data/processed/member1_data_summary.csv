@@ -1,0 +1,5 @@
+dataset_type,city_code,selected_date,available_peak_orders_on_selected_date,sample_orders,peak_start_hour,peak_end_hour,suggested_riders,suggested_capacity_per_rider,output_file,raw_rows
+cleaned_full,ALL,ALL,,35662,,,,,data/processed/cleaned_zomato_full.csv,45584
+main_optimization,JAP,02/04/2022,87,50,17,23,5,8-10 orders,data/processed/main_optimization_jaipur.csv,
+robustness,MUM,02/03/2022,78,50,17,23,5,8-10 orders,data/processed/robustness_mumbai.csv,
+robustness,HYD,18/03/2022,75,50,17,23,5,8-10 orders,data/processed/robustness_hyderabad.csv,

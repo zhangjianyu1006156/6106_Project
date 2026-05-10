@@ -1,0 +1,16 @@
+scenario,method,total_distance_km,avg_distance_per_rider_km,max_distance_per_rider_km,min_distance_per_rider_km,workload_imbalance_km,max_orders_per_rider,min_orders_per_rider,estimated_total_time_min,improvement_vs_original_pct
+Jaipur,Original Order,472.537,94.507,133.281,73.942,59.339,10,10,1692.977,0.0
+Jaipur,Random Assignment,514.278,102.856,118.404,92.197,26.207,10,10,1849.544,-8.833
+Jaipur,Geographic Clustering,319.475,63.895,88.419,51.022,37.397,20,3,1093.101,32.392
+Jaipur,Geographic + Nearest Neighbor,224.868,44.974,49.208,40.192,9.016,20,3,810.889,52.413
+Jaipur,Balanced Geo + NN + 2-opt,247.324,49.465,55.79,44.946,10.844,10,10,871.263,47.661
+Mumbai,Original Order,768.19,153.638,182.894,131.818,51.076,10,10,2557.678,0.0
+Mumbai,Random Assignment,746.935,149.387,184.128,109.167,74.961,10,10,2634.713,2.767
+Mumbai,Geographic Clustering,416.846,83.369,126.916,59.657,67.259,16,4,1435.937,45.737
+Mumbai,Geographic + Nearest Neighbor,287.846,57.569,74.717,38.992,35.725,16,4,982.288,62.529
+Mumbai,Balanced Geo + NN + 2-opt,293.432,58.686,78.919,36.843,42.076,10,10,975.267,61.802
+Hyderabad,Original Order,571.753,114.351,126.872,106.849,20.023,10,10,2054.927,0.0
+Hyderabad,Random Assignment,506.854,101.371,116.701,85.655,31.046,10,10,1785.939,11.351
+Hyderabad,Geographic Clustering,352.177,70.435,82.386,52.337,30.05,14,3,1256.897,38.404
+Hyderabad,Geographic + Nearest Neighbor,255.736,51.147,72.224,35.101,37.123,14,3,926.158,55.272
+Hyderabad,Balanced Geo + NN + 2-opt,250.198,50.04,73.426,31.071,42.354,10,10,860.698,56.24

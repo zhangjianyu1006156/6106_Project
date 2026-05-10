@@ -1,0 +1,4 @@
+scenario,rows,city_codes,dates,min_order_hour,max_order_hour,missing_key_values
+Jaipur,50,JAP,02-04-2022,17.0,23.0,0
+Mumbai,50,MUM,02-03-2022,17.0,23.0,0
+Hyderabad,50,HYD,18-03-2022,17.0,23.0,0
