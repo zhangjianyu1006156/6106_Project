@@ -8,7 +8,7 @@ This script creates:
 4. A compact summary table describing the generated datasets.
 
 Run from the project folder:
-    python3 member1_data_cleaning.py
+    python3 scripts/member1_data_cleaning.py
 """
 
 from __future__ import annotations
@@ -19,8 +19,9 @@ from pathlib import Path
 import pandas as pd
 
 
-RAW_FILE = Path("Zomato Dataset.csv")
-OUTPUT_DIR = Path("data/processed")
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+RAW_FILE = PROJECT_ROOT / "Zomato Dataset.csv"
+OUTPUT_DIR = PROJECT_ROOT / "data" / "processed"
 
 MAIN_CITY_CODE = "JAP"
 ROBUSTNESS_CITY_CODES = {
@@ -236,4 +237,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

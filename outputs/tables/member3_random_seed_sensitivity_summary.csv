@@ -1,0 +1,4 @@
+scenario,mean_total_distance_km,std_total_distance_km,min_total_distance_km,max_total_distance_km,mean_estimated_total_time_min,mean_improvement_vs_original_pct
+Hyderabad,519.71,36.257,456.989,580.728,1930.949,9.102
+Jaipur,452.248,30.392,419.328,514.278,1637.844,4.294
+Mumbai,740.166,45.744,658.872,792.225,2559.482,3.648

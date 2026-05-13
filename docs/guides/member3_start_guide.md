@@ -35,8 +35,8 @@ Use the following files as your starting point.
 | `robustness_hyderabad.csv` | Robustness scenario 2 | Transferability test |
 | `cleaned_zomato_full.csv` | Cleaned full dataset | Optional checking only |
 | `member1_data_summary.csv` | Summary of generated datasets | Scenario verification |
-| `member1_data_cleaning.py` | Cleaning script | Reference only |
-| `member1_report.md` | Business problem and data report | Reference for assumptions and report writing |
+| `scripts/member1_data_cleaning.py` | Cleaning script | Reference only |
+| `docs/reports/member1_report.md` | Business problem and data report | Reference for assumptions and report writing |
 
 Recommended local folder structure:
 
@@ -50,7 +50,7 @@ project_folder/
 │       ├── cleaned_zomato_full.csv
 │       └── member1_data_summary.csv
 ├── notebooks/
-│   └── member3_computational_experiment.ipynb
+│   └── notebooks/member3_computational_experiment.ipynb
 ├── outputs/
 │   ├── figures/
 │   └── tables/
@@ -116,7 +116,7 @@ Important columns for your work:
 Create a Jupyter Notebook named:
 
 ```text
-member3_computational_experiment.ipynb
+notebooks/member3_computational_experiment.ipynb
 ```
 
 Use this structure:
@@ -826,12 +826,12 @@ At the end of your work, export:
 
 | File | Purpose |
 |---|---|
-| `member3_computational_experiment.ipynb` | Main notebook |
-| `member3_results_summary.csv` | Metrics table for all scenarios |
-| `jaipur_baseline_route.png` | Baseline route figure |
-| `jaipur_optimized_route.png` | Optimized route figure |
-| `distance_comparison.png` | Metric comparison figure |
-| `workload_comparison.png` | Workload balance comparison figure |
+| `notebooks/member3_computational_experiment.ipynb` | Main notebook |
+| `outputs/tables/member3_results_summary.csv` | Metrics table for all scenarios |
+| `outputs/figures/jaipur_baseline_route.png` | Baseline route figure |
+| `outputs/figures/jaipur_optimized_route.png` | Optimized route figure |
+| `outputs/figures/distance_comparison.png` | Metric comparison figure |
+| `outputs/figures/workload_comparison.png` | Workload balance comparison figure |
 
 Recommended code for saving figures:
 

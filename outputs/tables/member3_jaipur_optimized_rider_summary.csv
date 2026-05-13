@@ -1,0 +1,6 @@
+scenario,method,rider,num_orders,route_distance_km,estimated_time_min
+Jaipur,Balanced Geo + NN + 2-opt,1,10,55.407,192.343
+Jaipur,Balanced Geo + NN + 2-opt,2,10,44.946,146.47
+Jaipur,Balanced Geo + NN + 2-opt,3,10,46.08,178.596
+Jaipur,Balanced Geo + NN + 2-opt,4,10,45.1,147.529
+Jaipur,Balanced Geo + NN + 2-opt,5,10,55.79,206.326

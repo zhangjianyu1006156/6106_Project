@@ -308,9 +308,9 @@ Member 3 has already created:
 | File | Purpose |
 |---|---|
 | `src/member3_utils.py` | Distance matrix, baselines, heuristic optimization, route plotting |
-| `member3_run_experiment.py` | One-click experiment runner |
-| `member3_computational_experiment.ipynb` | Notebook version of experiment workflow |
-| `member3_report.md` | Draft computational report |
+| `scripts/member3_run_experiment.py` | One-click experiment runner |
+| `notebooks/member3_computational_experiment.ipynb` | Notebook version of experiment workflow |
+| `docs/reports/member3_report.md` | Draft computational report |
 | `outputs/tables/member3_results_summary.csv` | Results table |
 | `outputs/figures/*.png` | Route and comparison figures |
 

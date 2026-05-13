@@ -19,7 +19,7 @@ Member 3 has already completed the main computational framework. This is not a f
 | Robustness tests | Completed | Jaipur, Mumbai, Hyderabad results |
 | Result table export | Completed | `outputs/tables/member3_results_summary.csv` |
 | Route and metric figures | Completed | `outputs/figures/*.png` |
-| Draft computational report | Completed | `member3_report.md` |
+| Draft computational report | Completed | `docs/reports/member3_report.md` |
 
 Member 2 has now confirmed the final model direction:
 
@@ -40,7 +40,7 @@ This means Member 3's existing implementation is aligned with the final model. T
 Run:
 
 ```bash
-python member3_run_experiment.py
+python scripts/member3_run_experiment.py
 ```
 
 Expected outputs:
@@ -63,11 +63,11 @@ After rerunning, confirm that the main result is still:
 | Mumbai | 768.190 km | 293.432 km | 61.802% |
 | Hyderabad | 571.753 km | 250.198 km | 56.240% |
 
-If the numbers change, update `member3_report.md`, `member2_report.md`, and all slides using the new values.
+If the numbers change, update `docs/reports/member3_report.md`, `docs/reports/member2_report.md`, and all slides using the new values.
 
 ### Task 2: Update Member 3 Report to Match Member 2's Final Model
 
-In `member3_report.md`, update Section 7 because it still says:
+In `docs/reports/member3_report.md`, update Section 7 because it still says:
 
 ```text
 If Member 2 later provides a full VRP or MIP formulation...
@@ -118,8 +118,8 @@ In the final report, mention this explicitly. The balanced optimized method may 
 
 The project includes:
 
-- `member3_computational_experiment.ipynb`;
-- `member3_run_experiment.py`;
+- `notebooks/member3_computational_experiment.ipynb`;
+- `scripts/member3_run_experiment.py`;
 - `src/member3_utils.py`.
 
 The notebook should not contain outdated logic that contradicts the script. Check that the notebook:
@@ -156,10 +156,10 @@ The slides should emphasize that the final method is not just descriptive analys
 
 ### Task 7: Add a Short Reproducibility Note
 
-Add a small section to `member3_report.md`:
+Add a small section to `docs/reports/member3_report.md`:
 
 ```text
-The experiment can be reproduced by running `python member3_run_experiment.py` from the project root. The script loads the processed datasets, validates the scenarios, runs all baseline and optimized methods, exports result tables, and saves route and comparison figures.
+The experiment can be reproduced by running `python scripts/member3_run_experiment.py` from the project root. The script loads the processed datasets, validates the scenarios, runs all baseline and optimized methods, exports result tables, and saves route and comparison figures.
 ```
 
 This makes the computational part look more professional.
@@ -257,7 +257,7 @@ This helps explain why the final optimized method is selected even when another 
 
 Before Member 3 says the work is finished, all of the following should be true:
 
-- `python member3_run_experiment.py` runs successfully from the project root.
+- `python scripts/member3_run_experiment.py` runs successfully from the project root.
 - `member3_results_summary.csv` has 15 rows.
 - `member3_validation_summary.csv` has 3 rows.
 - Jaipur optimized distance is reported as 247.324 km unless rerun results change.
@@ -273,9 +273,9 @@ Before Member 3 says the work is finished, all of the following should be true:
 
 Do the remaining work in this order:
 
-1. Re-run `member3_run_experiment.py`.
+1. Re-run `scripts/member3_run_experiment.py`.
 2. Confirm the output tables and figures.
-3. Update `member3_report.md` Section 7 to remove outdated wording.
+3. Update `docs/reports/member3_report.md` Section 7 to remove outdated wording.
 4. Add explanation of the balanced geographic method.
 5. Add reproducibility, limitation, and managerial interpretation paragraphs.
 6. Check the notebook for consistency with the script.

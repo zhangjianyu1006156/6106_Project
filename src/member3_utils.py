@@ -188,6 +188,14 @@ def balanced_geographic_baseline(
     num_riders: int = NUM_RIDERS,
     capacity: int = RIDER_CAPACITY,
 ) -> RouteMap:
+    if num_riders <= 0 or capacity <= 0:
+        raise ValueError("num_riders and capacity must be positive.")
+    if len(df) > num_riders * capacity:
+        raise ValueError(
+            f"{len(df)} orders exceed total rider capacity "
+            f"of {num_riders * capacity}."
+        )
+
     depot = create_depot(df)
     temp = df.copy()
     temp["angle"] = np.arctan2(
@@ -313,24 +321,137 @@ def evaluate_routes(
 
 
 def estimate_routes_time(routes: RouteMap, distance_matrix: pd.DataFrame, df: pd.DataFrame) -> float:
+    return sum(
+        calculate_route_time(route, distance_matrix, df)
+        for route in routes.values()
+    )
+
+
+def calculate_route_time(
+    route: List[int],
+    distance_matrix: pd.DataFrame,
+    df: pd.DataFrame,
+) -> float:
     conditions = df.set_index("scenario_order_id")[
         ["Road_traffic_density", "Weather_conditions"]
     ].to_dict("index")
     total_time = 0.0
-    for route in routes.values():
-        current = 0
-        for node in route:
-            distance = float(distance_matrix.loc[current, node])
-            row = conditions[node]
-            total_time += estimate_leg_time_min(
-                distance,
-                row["Road_traffic_density"],
-                row["Weather_conditions"],
-            )
-            current = node
-        if RETURN_TO_DEPOT and route:
-            total_time += estimate_leg_time_min(float(distance_matrix.loc[current, 0]))
+    current = 0
+    for node in route:
+        distance = float(distance_matrix.loc[current, node])
+        row = conditions[node]
+        total_time += estimate_leg_time_min(
+            distance,
+            row["Road_traffic_density"],
+            row["Weather_conditions"],
+        )
+        current = node
+    if RETURN_TO_DEPOT and route:
+        total_time += estimate_leg_time_min(float(distance_matrix.loc[current, 0]))
     return total_time
+
+
+def build_rider_summary_table(
+    routes: RouteMap,
+    distance_matrix: pd.DataFrame,
+    df: pd.DataFrame,
+    scenario_name: str,
+    method_name: str,
+) -> pd.DataFrame:
+    rows = []
+    for rider, route in sorted(routes.items()):
+        rows.append(
+            {
+                "scenario": scenario_name,
+                "method": method_name,
+                "rider": rider + 1,
+                "num_orders": len(route),
+                "route_distance_km": calculate_route_distance(route, distance_matrix),
+                "estimated_time_min": calculate_route_time(route, distance_matrix, df),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def build_route_sequence_table(
+    routes: RouteMap,
+    df: pd.DataFrame,
+    scenario_name: str,
+    method_name: str,
+) -> pd.DataFrame:
+    node_lookup = df.set_index("scenario_order_id")[
+        [
+            "Delivery_location_latitude",
+            "Delivery_location_longitude",
+            "Time_Orderd",
+            "Road_traffic_density",
+            "Weather_conditions",
+        ]
+    ].to_dict("index")
+    rows = []
+    for rider, route in sorted(routes.items()):
+        for route_position, node in enumerate(route, start=1):
+            row = node_lookup[node]
+            rows.append(
+                {
+                    "scenario": scenario_name,
+                    "method": method_name,
+                    "rider": rider + 1,
+                    "route_position": route_position,
+                    "scenario_order_id": node,
+                    "delivery_latitude": row["Delivery_location_latitude"],
+                    "delivery_longitude": row["Delivery_location_longitude"],
+                    "order_time": row["Time_Orderd"],
+                    "traffic_density": row["Road_traffic_density"],
+                    "weather_condition": row["Weather_conditions"],
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def build_random_seed_sensitivity_table(
+    scenarios: Dict[str, pd.DataFrame],
+    scenario_outputs: Dict[str, ScenarioResult],
+    seeds: Iterable[int],
+    num_riders: int = NUM_RIDERS,
+) -> pd.DataFrame:
+    rows = []
+    for scenario_name, df in scenarios.items():
+        scenario_result = scenario_outputs[scenario_name]
+        baseline_distance = float(
+            scenario_result.results.loc[
+                scenario_result.results["method"] == "Original Order",
+                "total_distance_km",
+            ].iloc[0]
+        )
+        for seed in seeds:
+            routes = random_assignment_baseline(df, num_riders, seed)
+            metrics, _ = evaluate_routes(routes, scenario_result.distance_matrix, df)
+            rows.append(
+                {
+                    "scenario": scenario_name,
+                    "seed": seed,
+                    "total_distance_km": metrics["total_distance_km"],
+                    "estimated_total_time_min": metrics["estimated_total_time_min"],
+                    "improvement_vs_original_pct": (
+                        (baseline_distance - metrics["total_distance_km"])
+                        / baseline_distance
+                        * 100
+                    ),
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def summarize_random_seed_sensitivity(sensitivity: pd.DataFrame) -> pd.DataFrame:
+    return sensitivity.groupby("scenario", as_index=False).agg(
+        mean_total_distance_km=("total_distance_km", "mean"),
+        std_total_distance_km=("total_distance_km", "std"),
+        min_total_distance_km=("total_distance_km", "min"),
+        max_total_distance_km=("total_distance_km", "max"),
+        mean_estimated_total_time_min=("estimated_total_time_min", "mean"),
+        mean_improvement_vs_original_pct=("improvement_vs_original_pct", "mean"),
+    )
 
 
 def run_scenario_workflow(
