@@ -18,6 +18,16 @@ This repository is organized by function:
 
 From the project root:
 
+On Windows PowerShell:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python -m pip install -r requirements.txt
+.\.venv\Scripts\python scripts\member3_run_experiment.py
+```
+
+On macOS/Linux:
+
 ```bash
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
@@ -29,6 +39,14 @@ The script writes updated tables to `outputs/tables/` and figures to `outputs/fi
 ## Data Cleaning
 
 If the raw `Zomato Dataset.csv` file is available in the project root, rerun Member 1 data preparation with:
+
+On Windows PowerShell:
+
+```powershell
+.\.venv\Scripts\python scripts\member1_data_cleaning.py
+```
+
+On macOS/Linux:
 
 ```bash
 .venv/bin/python scripts/member1_data_cleaning.py
