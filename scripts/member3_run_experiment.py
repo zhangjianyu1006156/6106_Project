@@ -1,3 +1,8 @@
+"""Member 3 computational experiment runner.
+
+ChatLog Link: https://chatgpt.com/share/69fac10c-8ebc-839c-a19d-c83718097045
+"""
+
 from pathlib import Path
 import os
 import sys

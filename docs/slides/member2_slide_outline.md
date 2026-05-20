@@ -54,10 +54,14 @@
 
 ## Slide 6: Main Result Connection
 
+These results are from Member 3's computational experiment and are shown here only to connect the model with implementation outcomes.
+
 | Jaipur Method | Total Distance (km) | Improvement |
 |---|---:|---:|
 | Original Order | 472.537 | 0.000% |
 | Balanced Geo + NN + 2-opt | 247.324 | 47.661% |
 
-The model shows that optimized assignment and route sequencing can substantially reduce delivery distance while maintaining balanced rider workload.
+Key message:
+
+The model shows why optimized assignment and route sequencing should reduce delivery distance, while Member 3's computational experiment reports the actual numerical improvement.
 

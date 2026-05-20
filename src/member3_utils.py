@@ -1,3 +1,8 @@
+"""Member 3 routing experiment utilities.
+
+ChatLog Link: https://chatgpt.com/share/69fac10c-8ebc-839c-a19d-c83718097045
+"""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
